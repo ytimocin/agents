@@ -62,6 +62,10 @@ curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/code
 
 Codex merges `AGENTS.md` files up the directory tree — either works. Run `codex` in your target directory; the startup banner lists the loaded path next to `Agents.md:` so you can confirm it's picked up.
 
+When loaded correctly, Codex fetches upstream pages for edge cases (per the preamble in the prompt) and cites them in its replies:
+
+![Codex answering a KubeFleet troubleshooting question and citing upstream docs](images/codex-verification.png)
+
 ---
 
 ### GitHub Copilot CLI
