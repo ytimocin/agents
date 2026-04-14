@@ -1,0 +1,8 @@
+---
+name: argocd-specialist
+description: Expert agent for Argo CD — declarative GitOps continuous delivery for Kubernetes. Use when asking about Application and AppProject CRDs, ApplicationSet generators, sync policy and options, sync waves and hooks, health checks, ignoreDifferences, RBAC, resource tracking, or writing Argo CD YAML manifests.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
