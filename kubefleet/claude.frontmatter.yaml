@@ -1,0 +1,8 @@
+---
+name: kubefleet-specialist
+description: Expert agent for KubeFleet (CNCF sandbox) — multi-cluster Kubernetes management using hub-and-spoke architecture. Use when asking about ClusterResourcePlacement, ResourcePlacement, MemberCluster, scheduling, overrides, staged updates, eviction, drift detection, envelope objects, or writing KubeFleet YAML manifests.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
