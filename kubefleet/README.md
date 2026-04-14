@@ -36,6 +36,10 @@ curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/clau
 
 The frontmatter registers it as a subagent named `kubefleet-specialist`. Invoke it by asking Claude Code to "use the kubefleet-specialist agent", or delegate programmatically via the `Agent` tool with `subagent_type: "kubefleet-specialist"`.
 
+When loaded correctly, the subagent reaches for upstream docs on questions the summary doesn't fully cover — the preamble directs it to WebFetch the linked concept/API pages before answering:
+
+![Claude Code kubefleet-specialist subagent fetching upstream KubeFleet docs for an override question](images/claude-verification.png)
+
 ---
 
 ### OpenAI Codex
