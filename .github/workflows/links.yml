@@ -16,14 +16,12 @@ jobs:
       - name: Run lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Skip the generated tool-facing files — their links are byte-identical
-          # to knowledge.md, so checking knowledge.md alone covers them.
+          # The three generated tool-facing files contain the same links as
+          # knowledge.md, but lychee dedupes URLs internally so the duplicate
+          # parsing is cheap and the request count doesn't change.
           args: >-
             --verbose --no-progress
             --accept 200,204,206,403,429
-            --exclude-path '**/claude.md'
-            --exclude-path '**/codex.md'
-            --exclude-path '**/copilot.md'
             './**/*.md'
           fail: true
         env:
