@@ -1,0 +1,43 @@
+name: freshness
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"  # Mondays 13:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-freshness:
+    name: flag stale knowledge.md files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check "Last audited" marker age
+        env:
+          STALE_DAYS: 90
+        run: |
+          set -euo pipefail
+          today=$(date -u +%s)
+          stale=0
+          shopt -s nullglob
+          any=0
+          for knowledge in */knowledge.md; do
+            any=1
+            audited=$(grep -m1 '^Last audited:' "$knowledge" | awk '{print $3}' || true)
+            if [[ -z "$audited" ]]; then
+              echo "::warning file=$knowledge::missing 'Last audited: YYYY-MM-DD' marker"
+              continue
+            fi
+            ts=$(date -d "$audited" +%s)
+            days=$(( (today - ts) / 86400 ))
+            if (( days > STALE_DAYS )); then
+              echo "::error file=$knowledge::last audited $days days ago (> $STALE_DAYS)"
+              stale=1
+            else
+              echo "$knowledge: $days days since audit (ok)"
+            fi
+          done
+          if (( any == 0 )); then
+            echo "no topic folders with knowledge.md found; nothing to check"
+          fi
+          exit $stale

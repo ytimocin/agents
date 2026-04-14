@@ -1,0 +1,30 @@
+name: links
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 14 * * 1"  # Mondays 14:00 UTC
+  workflow_dispatch:
+
+jobs:
+  link-check:
+    name: check all markdown links resolve
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Skip the generated tool-facing files — their links are byte-identical
+          # to knowledge.md, so checking knowledge.md alone covers them.
+          args: >-
+            --verbose --no-progress
+            --accept 200,204,206,403,429
+            --exclude-path '**/claude.md'
+            --exclude-path '**/codex.md'
+            --exclude-path '**/copilot.md'
+            './**/*.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

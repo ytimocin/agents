@@ -15,6 +15,8 @@ Canonical sources:
 - API reference index: https://kubefleet.dev/docs/api-reference/
 - Project repo: https://github.com/kubefleet-dev/kubefleet
 
+Last audited: 2026-04-14
+
 ---
 
 ## What KubeFleet Is
