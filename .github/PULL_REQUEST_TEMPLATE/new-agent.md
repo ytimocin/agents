@@ -22,7 +22,7 @@ At least one valid URL is required. The more sources linked, the easier the prom
 
 ### Checklist
 
-- [ ] `<topic>/knowledge.md` exists and follows the [style rules in CONTRIBUTING.md](../CONTRIBUTING.md#style-rules-for-the-knowledge-itself) (short paragraphs, tables, YAML skeletons, `Full docs: <url>` under every `##` section).
+- [ ] `<topic>/knowledge.md` exists and follows the [style rules in CONTRIBUTING.md](../../CONTRIBUTING.md#style-rules-for-the-knowledge-itself) (short paragraphs, tables, YAML skeletons, `Full docs: <url>` under every `##` section).
 - [ ] `<topic>/claude.frontmatter.yaml` exists with `name: <topic>-specialist`, a one-line `description`, `model`, `tools`, `memory`.
 - [ ] `<topic>/README.md` exists with install commands for Claude Code, Codex, and Copilot (model on `kubefleet/README.md`).
 - [ ] I ran `bash scripts/sync.sh` — `claude.md`, `codex.md`, and `copilot.md` are regenerated.
