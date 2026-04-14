@@ -2,7 +2,7 @@
 
 Reference knowledge for [KubeFleet](https://kubefleet.dev/) — multi-cluster Kubernetes management via hub-and-spoke placement, scheduling, staged rollouts, overrides, drift detection, and eviction.
 
-Covers concepts, how-tos, API groups/versions, troubleshooting conditions, and CLI quick-reference. Grounded in the official docs at https://kubefleet.dev/docs.
+Covers concepts, how-tos, API groups/versions, troubleshooting conditions, and CLI quick-reference. Grounded in the official docs at https://kubefleet.dev/docs, with inline `Full docs: <url>` links under every section so the agent can fetch upstream when it needs more detail.
 
 ## Files
 
@@ -12,11 +12,15 @@ Covers concepts, how-tos, API groups/versions, troubleshooting conditions, and C
 | `codex.md` | OpenAI Codex | Plain markdown (no frontmatter) |
 | `copilot.md` | GitHub Copilot | Plain markdown (no frontmatter) |
 
+The three files share the same body — only the frontmatter differs so each tool can parse it.
+
+---
+
 ## Install
 
 ### Claude Code
 
-Drop `claude.md` into your agents directory — user-level (available in every session) or project-level (this repo only):
+Drop the file into your agents directory — user-level (available in every session) or project-level (this repo only):
 
 ```bash
 # User-level (recommended — reusable across all projects)
@@ -30,27 +34,50 @@ curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/clau
   -o .claude/agents/kubefleet-specialist.md
 ```
 
-The frontmatter registers it as a subagent named `kubefleet-specialist`. Invoke it by asking Claude Code to "use the kubefleet-specialist agent" or by delegating via the `Agent` tool with `subagent_type: "kubefleet-specialist"`.
+The frontmatter registers it as a subagent named `kubefleet-specialist`. Invoke it by asking Claude Code to "use the kubefleet-specialist agent", or delegate programmatically via the `Agent` tool with `subagent_type: "kubefleet-specialist"`.
+
+---
 
 ### OpenAI Codex
 
-Codex reads `AGENTS.md` from the repo root (and merges nested ones as you descend into subdirectories). Two options:
+**1. Install Codex CLI** and authenticate (`codex login` or set `OPENAI_API_KEY`):
 
 ```bash
-# Option A: drop in as the project's AGENTS.md
-curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/codex.md \
-  -o AGENTS.md
-
-# Option B: append to an existing AGENTS.md
-curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/codex.md \
-  >> AGENTS.md
+brew install codex            # or: npm install -g @openai/codex
+codex --version
 ```
 
-User-level instructions live in `~/.codex/AGENTS.md` if you want it active across all Codex projects.
+**2. Drop the prompt into Codex's instruction path.** Two options — pick based on scope:
 
-### GitHub Copilot
+```bash
+# Global — active in every Codex session
+mkdir -p ~/.codex
+curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/codex.md \
+  -o ~/.codex/AGENTS.md
 
-Copilot reads `.github/copilot-instructions.md` per repository:
+# Per-project — scoped to the current directory
+curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/codex.md \
+  -o AGENTS.md
+```
+
+Codex merges `AGENTS.md` files up the directory tree — either works. Run `codex` in your target directory; the startup banner lists the loaded path next to `Agents.md:` so you can confirm it's picked up.
+
+---
+
+### GitHub Copilot CLI
+
+The standalone terminal tool. For VS Code or other IDEs, drop the same file at `.github/copilot-instructions.md` per repository and enable **GitHub › Copilot › Chat › Code Generation: Use Instruction Files** in settings.
+
+**1. Install and authenticate:**
+
+```bash
+npm install -g @github/copilot
+copilot       # first launch walks through GitHub sign-in
+```
+
+Requires a Copilot subscription. Run `copilot --help` if command names differ — this CLI moves fast.
+
+**2. Install the prompt into a workspace.** Copilot CLI reads `.github/copilot-instructions.md` from the directory it's launched in:
 
 ```bash
 mkdir -p .github
@@ -58,7 +85,13 @@ curl -fsSL https://raw.githubusercontent.com/ytimocin/agents/main/kubefleet/copi
   -o .github/copilot-instructions.md
 ```
 
-Enable **Code referencing > Use instruction files** in your Copilot settings if it isn't already on. Copilot will pick up the file on the next interaction in that repo.
+For an always-on personal setup (active in every directory), check `copilot --help` for the user-level custom-instructions path — last checked it lives under `~/.copilot/`.
+
+**3. Launch** with `copilot` in the workspace. When it's loaded correctly, asking *"What KubeFleet reference are you using?"* produces a reply that cites `kubefleet.dev/docs` and the section structure from the file:
+
+![Copilot CLI confirming the custom KubeFleet reference is loaded](images/copilot-verification.png)
+
+---
 
 ## Updating
 
@@ -68,4 +101,4 @@ These files track the live KubeFleet docs. To refresh, re-run the relevant `curl
 
 - Built from the public docs at https://kubefleet.dev/docs and the repo at https://github.com/kubefleet-dev/kubefleet.
 - Intended as a fast-retrieval reference for an LLM, not a substitute for the upstream docs. When in doubt, link the user to the canonical page.
-- Known soft claims (not directly stated in docs) are explicitly hedged in-text.
+- Claims not directly stated in the docs are explicitly hedged in-text.
