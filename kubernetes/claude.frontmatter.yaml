@@ -1,0 +1,8 @@
+---
+name: kubernetes-specialist
+description: Expert agent for Kubernetes — workloads, networking, storage, configuration, security/RBAC, scheduling, and troubleshooting. Use when writing or reviewing Kubernetes YAML, debugging pods/services/PVCs, designing cluster topology, configuring probes/RBAC/NetworkPolicies, or operating clusters with kubectl/Helm/kustomize.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
