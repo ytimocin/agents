@@ -89,8 +89,8 @@ The smallest deployable object is a **Pod** (one or more co-scheduled containers
 
 **Pod features worth knowing:**
 - **Init containers** run sequentially to completion before app containers start.
-- **Sidecar containers** (`apps/v1`, GA in 1.29) are init containers with `restartPolicy: Always`; lifecycle is tied to the Pod and they shut down after main containers exit.
-- **Ephemeral containers** are added to a running Pod for debugging via `kubectl debug` (cannot be specified in a PodSpec).
+- **Sidecar containers** (Pod-level, core `v1`; GA in 1.29) are defined under `spec.initContainers[*]` with `restartPolicy: Always`; lifecycle is tied to the Pod and they shut down after main containers exit.
+- **Ephemeral containers** are added to a running Pod for debugging via `kubectl debug`; they are represented in `spec.ephemeralContainers` but are added via the `/ephemeralcontainers` subresource rather than set at Pod creation.
 - **QoS classes** are derived from requests/limits, not declared: Guaranteed (limits == requests on every container) > Burstable (some requests/limits set) > BestEffort (none).
 - **PodDisruptionBudget** caps voluntary disruption (drains, rolling updates) — not involuntary disruption (node failure).
 
