@@ -32,6 +32,7 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 
 - [argocd](argocd/) — declarative GitOps continuous delivery for Kubernetes (CNCF graduated)
 - [kubefleet](kubefleet/) — multi-cluster Kubernetes management (CNCF sandbox)
+- [kubernetes](kubernetes/) — the container orchestration platform itself (workloads, networking, storage, RBAC, troubleshooting)
 
 More topics may be added over time — see [CONTRIBUTING.md](./CONTRIBUTING.md) for the scaffold.
 
