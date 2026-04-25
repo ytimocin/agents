@@ -31,6 +31,7 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 ## Topics
 
 - [argocd](argocd/) — declarative GitOps continuous delivery for Kubernetes (CNCF graduated)
+- [helm](helm/) — the package manager for Kubernetes (charts, templating, hooks, OCI registries, CLI)
 - [kubefleet](kubefleet/) — multi-cluster Kubernetes management (CNCF sandbox)
 - [kubernetes](kubernetes/) — the container orchestration platform itself (workloads, networking, storage, RBAC, troubleshooting)
 
