@@ -1,0 +1,8 @@
+---
+name: helm-specialist
+description: Expert agent for Helm — the package manager for Kubernetes. Use when authoring or reviewing charts, debugging template rendering, designing values schemas and overrides, managing dependencies/subcharts, working with hooks/tests, publishing to OCI registries, or running install/upgrade/rollback workflows.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
