@@ -1,0 +1,8 @@
+---
+name: golang-specialist
+description: Expert agent for the Go programming language — language spec, generics, concurrency, memory model, modules/toolchain, testing/fuzzing, profiling and PGO, database/sql, net/http, and the standard library. Use when writing or reviewing Go code, debugging goroutine/channel/race issues, configuring go.mod / go.work, tuning GC (GOGC/GOMEMLIMIT), or designing idiomatic Go services.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
