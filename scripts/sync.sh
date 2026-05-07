@@ -13,12 +13,9 @@ set -euo pipefail
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
-shopt -s nullglob
-
 any_topic=0
-for topic_dir in */; do
-    knowledge="${topic_dir}knowledge.md"
-    [[ -f "$knowledge" ]] || continue
+while IFS= read -r -d '' knowledge; do
+    topic_dir="$(dirname "$knowledge")/"
     any_topic=1
 
     cp "$knowledge" "${topic_dir}codex.md"
@@ -32,7 +29,7 @@ for topic_dir in */; do
     fi
 
     echo "synced ${topic_dir}{claude,codex,copilot}.md from ${knowledge}"
-done
+done < <(find . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name knowledge.md -print0)
 
 if (( any_topic == 0 )); then
     echo "no topic folders with knowledge.md found; nothing to do" >&2

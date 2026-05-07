@@ -1,0 +1,8 @@
+---
+name: postgres-sql-specialist
+description: Expert agent for the PostgreSQL SQL language — DDL, DML, queries, joins, CTEs, data types (incl. JSONB, arrays, ranges), functions and operators, indexes (B-tree, GIN, GiST, BRIN, SP-GiST, hash), full-text search, MVCC and isolation levels, EXPLAIN/planner tuning, and parallel query. Use when writing or reviewing PostgreSQL SQL, debugging query plans, choosing index types, designing schemas, modeling JSON/array data, or tuning isolation levels.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
