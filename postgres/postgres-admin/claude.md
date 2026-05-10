@@ -85,7 +85,7 @@ make -j$(nproc) world && sudo make install-world
 
 Common options: `--with-openssl`/`-Dssl=openssl`, `--with-icu`/`-Dicu=enabled` (recommended), `--with-systemd`, `--with-llvm` (JIT), `--with-pam`, `--with-ldap`, `--with-gssapi`. Windows: Meson + Visual Studio (`nmake` no longer supported). Source builds install no init scripts — wire up `initdb` and the OS user yourself.
 
-Full docs: https://www.postgresql.org/docs/current/installation.html · Windows: https://www.postgresql.org/docs/current/install-windows.html
+Full docs: https://www.postgresql.org/docs/current/installation.html · Platform notes (incl. Windows / MinGW / Visual Studio): https://www.postgresql.org/docs/current/installation-platform-notes.html
 
 ---
 
@@ -1049,7 +1049,7 @@ SELECT pg_size_pretty(sum(size)) FROM pg_ls_waldir();   -- WAL on disk
 - Most common cause: a retained replication slot. `SELECT slot_name, active, restart_lsn, pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn) FROM pg_replication_slots;` — drop or advance dead slots.
 - `temp_file_limit` (per session) caps temp-file usage; `log_temp_files = 0` logs every spill.
 
-Full docs: Disk usage: https://www.postgresql.org/docs/current/diskusage.html · Disk-full: https://www.postgresql.org/docs/current/disk-full.html
+Full docs: Disk usage: https://www.postgresql.org/docs/current/diskusage.html · Disk-full failure: https://www.postgresql.org/docs/current/diskusage.html#DISK-FULL
 
 ---
 
@@ -1297,7 +1297,7 @@ Run `ANALYZE` on affected tables. After `pg_upgrade`, **always** run `analyze_ne
 - `pg_xlog` was renamed `pg_wal` in PG 10 — references to it mean a 9.x cluster.
 - `idle in transaction` is the silent killer — set `idle_in_transaction_session_timeout`.
 
-Full docs: Authentication problems: https://www.postgresql.org/docs/current/client-authentication-problems.html · Disk full: https://www.postgresql.org/docs/current/disk-full.html
+Full docs: Authentication problems: https://www.postgresql.org/docs/current/client-authentication-problems.html · Disk full: https://www.postgresql.org/docs/current/diskusage.html#DISK-FULL
 
 ---
 
