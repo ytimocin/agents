@@ -10,7 +10,7 @@ jobs:
     name: topic files in sync with knowledge.md
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Regenerate topic files from knowledge.md
         run: bash scripts/sync.sh
