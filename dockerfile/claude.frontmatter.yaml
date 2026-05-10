@@ -1,0 +1,8 @@
+---
+name: dockerfile-specialist
+description: Expert agent for the Dockerfile — every instruction (FROM, RUN, CMD, ENTRYPOINT, COPY, ADD, ENV, ARG, LABEL, EXPOSE, VOLUME, WORKDIR, USER, ONBUILD, STOPSIGNAL, HEALTHCHECK, SHELL), parser directives (syntax/escape/check), BuildKit features (RUN --mount=type=bind|cache|tmpfs|secret|ssh, --network, --security, heredocs, COPY --link/--parents/--exclude, --from for multi-stage), build secrets, .dockerignore, multi-stage build patterns, the 21 build-check linter rules, cache backends (inline/registry/local/gha/s3/azblob), and provenance/SBOM attestations. Use when authoring or reviewing Dockerfiles, debugging cache misses or huge image layers, designing multi-stage builds, configuring BuildKit cache exports, hardening image builds (non-root USER, secret handling), or porting Dockerfiles to multi-arch.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
