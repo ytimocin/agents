@@ -31,6 +31,7 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 ## Topics
 
 - [argocd](argocd/) — declarative GitOps continuous delivery for Kubernetes (CNCF graduated)
+- [dockerfile](dockerfile/) — the Dockerfile (instructions, parser directives, BuildKit `--mount`, multi-stage, secrets, cache backends, attestations, `.dockerignore`)
 - [golang](golang/) — the Go programming language (spec, generics, concurrency, modules, testing, profiling, stdlib)
 - [helm](helm/) — the package manager for Kubernetes (charts, templating, hooks, OCI registries, CLI)
 - [kubefleet](kubefleet/) — multi-cluster Kubernetes management (CNCF sandbox)
