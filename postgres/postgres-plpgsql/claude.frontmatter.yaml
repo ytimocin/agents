@@ -1,0 +1,7 @@
+---
+name: postgres-plpgsql-specialist
+description: Expert agent for server-side procedural code in PostgreSQL — PL/pgSQL functions and procedures, triggers (BEFORE/AFTER/INSTEAD OF, row vs statement, transition tables), event triggers, control structures, exception handling, cursors, in-procedure transaction control, dynamic SQL via EXECUTE/format(), and trigger function patterns. Use when writing or reviewing PL/pgSQL, designing audit/soft-delete/derived-column triggers, debugging trigger ordering or recursion, porting Oracle PL/SQL, or choosing between LANGUAGE SQL and LANGUAGE plpgsql.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---

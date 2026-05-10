@@ -1,0 +1,7 @@
+---
+name: postgres-tools-specialist
+description: Expert agent for PostgreSQL command-line tools — psql (meta-commands, scripting, output formats), pg_dump/pg_restore/pg_dumpall (formats, parallel jobs, selective restore), pg_basebackup and pg_verifybackup, pg_upgrade major-version upgrades, pg_rewind, pg_resetwal, pg_archivecleanup, pg_waldump, pg_controldata, pg_amcheck, pgbench, pg_test_fsync, initdb, pg_ctl, pg_combinebackup, pg_createsubscriber, vacuumdb/reindexdb, and the rest of the bundled binaries. Use when scripting backup/restore, designing major-version upgrades, capacity-testing with pgbench, debugging WAL, scripting psql sessions, or choosing between dump formats and pg_basebackup modes.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---

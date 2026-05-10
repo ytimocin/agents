@@ -1,0 +1,7 @@
+---
+name: postgres-extensions-specialist
+description: Expert agent for PostgreSQL bundled extensions (Appendix F contrib modules) — pg_stat_statements, auto_explain, pg_trgm, pgcrypto, postgres_fdw, btree_gin/btree_gist, hstore, citext, ltree, intarray, cube, bloom, amcheck, pg_prewarm, pg_buffercache, pg_visibility, pg_walinspect, pageinspect, pgstattuple, tablefunc, unaccent, file_fdw, and the rest of the contrib tree. Also covers CREATE EXTENSION lifecycle and shared_preload_libraries. Use when enabling shipped functionality, choosing between hstore and JSONB, configuring pg_stat_statements/auto_explain, setting up cross-cluster queries with postgres_fdw, or detecting bloat with pgstattuple.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---

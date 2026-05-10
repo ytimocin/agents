@@ -1,0 +1,8 @@
+---
+name: postgres-admin-specialist
+description: Expert agent for PostgreSQL server administration — installation, initdb and data directory layout, postgresql.conf and pg_hba.conf, roles and authentication (SCRAM, GSSAPI, LDAP, cert, peer), database and tablespace management, VACUUM and autovacuum tuning, WAL and checkpoint configuration, physical and logical replication, PITR and pg_basebackup, monitoring via pg_stat_* views, JIT, and routine maintenance. Use when configuring a Postgres cluster, debugging replication or vacuum issues, designing backup/restore strategy, tuning WAL/checkpoints, or hardening authentication.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
