@@ -909,7 +909,7 @@ flux reconcile kustomization <name> -n <ns> --with-source
 
 | Symptom | Likely cause | Resolution |
 |---------|--------------|------------|
-| `OutOfSync` / `Stalled` Kustomization | Build error, post-build substitution failed, RBAC denied, source not ready | `flux build kustomization <name>` locally to see the build error; check `status.conditions` for the apply error |
+| Kustomization not `Ready` / `Stalled` | Build error, post-build substitution failed, RBAC denied, source not ready | `flux build kustomization <name>` locally to see the build error; check `status.conditions` for the apply error. (Flux uses kstatus conditions — `Ready`/`Reconciling`/`Stalled` — there is no Argo-style `OutOfSync` condition.) |
 | Kustomization never reaches `Ready` | `wait: true` waiting on a health check that never converges | `kubectl describe` the failing workload; consider `healthCheckExprs` or remove `wait: true` |
 | Helm install stuck pending | Hook job failing, `disableWait` not set on slow workloads | `kubectl describe helmrelease <name>`; set `install.disableWait: true` to skip Helm-side wait and rely on Flux health checks instead |
 | `Request entity too large` (Helm chart) | Chart artifact exceeds 3 MiB Kubernetes Secret limit | Add `.helmignore` / `.sourceignore` to exclude tests/docs/large vendored content |
