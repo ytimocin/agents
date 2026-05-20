@@ -130,7 +130,7 @@ Full docs: https://fluxcd.io/flux/installation/bootstrap/
 
 ### Dev install / Helm
 
-For ephemeral clusters: `flux install` (writes manifests directly, no Git), `kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml`, or the [flux2 Helm chart](https://github.com/fluxcd/flux2/tree/main/charts/flux2). None of these self-manage — re-running them is the only "upgrade."
+For ephemeral clusters: `flux install` (writes manifests directly, no Git), `kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml`, or the community-maintained [flux2 Helm chart](https://github.com/fluxcd-community/helm-charts) (`helm install -n flux-system --create-namespace flux oci://ghcr.io/fluxcd-community/charts/flux2`). None of these self-manage — re-running them is the only "upgrade."
 
 ### Prerequisites
 
