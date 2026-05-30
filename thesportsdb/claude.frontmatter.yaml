@@ -1,0 +1,8 @@
+---
+name: thesportsdb-specialist
+description: Expert agent for TheSportsDB — the crowdsourced multi-sport database with two HTTP APIs (V1 legacy PHP, free with the documented test key `3` or the in-example `123`; V2 modern REST, Patreon-tier paid) covering all major sports (soccer / NBA / NFL / NHL / MLB / F1 / motorsports / esports), rich team/jersey/stadium/league media through the artwork CDN, livescore feeds for the five tracked leagues, and cross-referenceable external IDs (`idAPIfootball`, `idSoccerXML`, `idWikidata`). Use when querying V1 PHP endpoints (`searchteams.php`, `lookupteam.php`, `eventsnext.php`, `eventslast.php`, `eventsday.php`, `livescore.php`) or V2 REST paths, parsing the `{ "events": null }` transient-sync gotcha (workaround: retry once after ~2 s), handling unreliable `strStatus` (project staff confirmed it's not authoritative — compute finished-state from `dateEvent` + `strTime` + ~120 min instead), keying off `idEvent` rather than the rotating 9-digit `idLiveScore`, navigating tier limits (no unlimited plan even at $20/mo — paid only raises ceilings and unlocks endpoints), or cross-referencing entities with API-Football via shared external IDs.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

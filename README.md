@@ -41,6 +41,7 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 - [playwright](playwright/) — cross-browser end-to-end testing with `@playwright/test` (locators, web-first assertions, fixtures, projects, sharding, trace viewer, CI Docker image)
 - [posthog](posthog/) — all-in-one product analytics + session replay + feature flags + experiments + surveys + LLM observability + warehouse + CDP (`posthog-js` + server SDKs, HogQL, `getFeatureFlag` exposure semantics, reverse proxy with `api_host` + `ui_host`)
 - [the-odds-api](the-odds-api/) — The Odds API V4 sports-betting odds JSON API (every endpoint, market key, bookmaker key, quota rule; `regions × markets` cost formula, 10-bookmaker = 1 region rule, historical snapshot envelope, error-code catalog)
+- [thesportsdb](thesportsdb/) — TheSportsDB crowdsourced multi-sport database (V1 legacy PHP free with public test key, V2 modern REST behind Patreon paid tier, rich media/artwork CDN, livescore feed for the five tracked leagues, `idAPIfootball` cross-referencing, `{events: null}` transient-sync gotcha, unreliable `strStatus`)
 
 More topics may be added over time — see [CONTRIBUTING.md](./CONTRIBUTING.md) for the scaffold.
 
