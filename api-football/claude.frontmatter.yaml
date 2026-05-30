@@ -1,0 +1,8 @@
+---
+name: api-football-specialist
+description: Expert agent for API-Football v3 (api-sports.io) — the REST API for **football (soccer) only** covering 1200+ leagues across 170+ countries with livescores, fixtures, lineups, events, statistics, standings, player/coach/transfer data, predictions, and pre-match + in-play odds. Use when integrating with the **direct** (`https://v3.football.api-sports.io/`, auth `x-apisports-key`) or **RapidAPI** (`https://api-football-v1.p.rapidapi.com/v3/`, auth `x-rapidapi-key` + `x-rapidapi-host`) distribution, parsing the standard response envelope (`get` / `parameters` / `errors` / `paging` / `results` / `response`), handling the fixture status enum (`NS`, `1H`, `HT`, `2H`, `FT`, `AET`, `PEN`, `BT`, `SUSP`, `INT`, `PST`, `CANC`, `ABD`, `AWD`, `WO`, `LIVE`), querying odds (`/odds`, `/odds/live`, `/odds/mapping`, `/odds/bookmakers`, `/odds/bets`), checking per-endpoint `coverage` before committing to a league, paginating defensively via `paging.total`, or debugging the silent 200-with-`errors`-counts-against-quota footgun and the strict CORS header allow-list that rejects default axios/fetch headers. **Not for** basketball, NBA, NFL, F1, baseball, hockey, MMA, rugby, AFL, or volleyball — those live on sibling api-sports.io hosts with their own quotas.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

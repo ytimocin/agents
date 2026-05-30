@@ -30,6 +30,7 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 
 ## Topics
 
+- [api-football](api-football/) — API-Football v3 REST API for football/soccer data (1200+ leagues, fixtures, lineups, statistics, standings, odds; direct vs RapidAPI distribution, fixture status enum, `coverage` matrix, silent 200-with-`errors` quota footgun)
 - [argocd](argocd/) — declarative GitOps continuous delivery for Kubernetes (CNCF graduated)
 - [dockerfile](dockerfile/) — the Dockerfile (instructions, parser directives, BuildKit `--mount`, multi-stage, secrets, cache backends, attestations, `.dockerignore`)
 - [golang](golang/) — the Go programming language (spec, generics, concurrency, modules, testing, profiling, stdlib)
