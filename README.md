@@ -36,7 +36,9 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 - [helm](helm/) — the package manager for Kubernetes (charts, templating, hooks, OCI registries, CLI)
 - [kubefleet](kubefleet/) — multi-cluster Kubernetes management (CNCF sandbox)
 - [kubernetes](kubernetes/) — the container orchestration platform itself (workloads, networking, storage, RBAC, troubleshooting)
+- [plausible](plausible/) — privacy-friendly cookieless web analytics (`script.js` + `plausible.init()`, custom events, v2 Stats API, Events API, Sites API, reverse proxy, Community Edition self-host)
 - [playwright](playwright/) — cross-browser end-to-end testing with `@playwright/test` (locators, web-first assertions, fixtures, projects, sharding, trace viewer, CI Docker image)
+- [posthog](posthog/) — all-in-one product analytics + session replay + feature flags + experiments + surveys + LLM observability + warehouse + CDP (`posthog-js` + server SDKs, HogQL, `getFeatureFlag` exposure semantics, reverse proxy with `api_host` + `ui_host`)
 
 More topics may be added over time — see [CONTRIBUTING.md](./CONTRIBUTING.md) for the scaffold.
 

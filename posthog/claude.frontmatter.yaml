@@ -1,0 +1,8 @@
+---
+name: posthog-specialist
+description: Expert agent for PostHog — the open-source product analytics platform that also bundles session replay, feature flags, experiments, surveys, error tracking, web analytics, LLM observability, a data warehouse, and a customer data platform. Use when instrumenting `posthog-js` (init config, `person_profiles`, autocapture, replay masking, reverse proxy with `api_host` + `ui_host`), wiring server SDKs (`posthog-node`/`posthog-python` — including local feature-flag evaluation with `personalApiKey` and the required `shutdown()` in serverless), designing identification (anonymous vs identified, `identify`/`alias`/`reset`, groups for B2B), reading out feature flags or experiment variants (`getFeatureFlag` is the exposure call — `getAllFlags` is not), configuring session replay (`maskAllInputs`, `maskTextSelector`, `ph-no-capture`, sampling), authoring HogQL against `events`/`persons`/`sessions`/warehouse tables, choosing US vs EU cloud (`.i.posthog.com` ingest vs bare `posthog.com` app), or troubleshooting ad-blocker losses, MAU spikes, missing flags, missed exposures, and replay PII leaks.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

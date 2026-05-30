@@ -1,0 +1,8 @@
+---
+name: plausible-specialist
+description: Expert agent for Plausible Analytics — the lightweight, cookie-less, GDPR-friendly web analytics product (Cloud + open-source Community Edition self-host). Use when installing or debugging the `script.js` tracker and its variants (or the modern `@plausible-analytics/tracker` npm package with `plausible.init()`), wiring custom event goals (`plausible('EventName', {props, revenue})` and the CSS-class `plausible-event-name=...` syntax), using custom properties or ecommerce revenue (Business plan), querying the v2 Stats API (`POST /api/v2/query`), sending server-side events through the Events API (with `User-Agent` + `X-Forwarded-For`), managing sites and goals through the Enterprise-only Sites API, reverse-proxying through Nginx/Vercel/Netlify/Cloudflare/Caddy to defeat ad-blockers, excluding traffic (page wildcards, IP block list, `localStorage.plausible_ignore`, default-dropped localhost), embedding dashboards via shared links, importing from GA4, configuring teams and roles, or operating Plausible Community Edition self-host on Docker Compose.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
