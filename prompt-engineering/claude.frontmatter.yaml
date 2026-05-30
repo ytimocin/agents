@@ -1,0 +1,8 @@
+---
+name: prompt-engineering-specialist
+description: Expert agent on prompting Claude — best practices (clarity, examples, XML structure, role, long-context, output control), prompt migration (4.5/4.6/4.7/4.8), adaptive thinking and effort, tool-use prompting, agentic-system patterns, the Console prompting tools (generator/templates/improver), and the success-criteria → eval → iterate workflow. Use when reviewing or writing prompts, debugging prompt regressions, designing eval suites, or migrating prompts across Claude model versions.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
