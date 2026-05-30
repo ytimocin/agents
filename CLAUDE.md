@@ -35,6 +35,14 @@ The files are LLM-consumed, so structure for retrieval over narrative:
 - **Every `##` section ends with a `Full docs: <live-url>` link**, and the preamble instructs the LLM to WebFetch the linked upstream page for edge cases. That pair is what lets the agent answer authoritatively without bloating the prompt. Don't drop either half when editing.
 - Hedge unverified claims ("implementation detail not specified in the docs") rather than asserting them. Existing content has been audited against upstream docs; preserve that discipline.
 
+## Workflow agents (exemption to the topic pattern)
+
+`.claude/agents/` holds **workflow** agents — they do things (review prompts in code, review prompt/response logs in a DB), they don't describe a technology. They intentionally sit outside the 3-peer sync pattern: there's no `codex.md`/`copilot.md` peer because Codex and Copilot consume agent definitions differently, and the substantive prompt-engineering knowledge they reference lives in the `prompt-engineering/` topic (which *is* synced). Don't try to "fix" the asymmetry by giving workflow agents peer files — there's nothing to keep in sync.
+
+Current workflow agents:
+- `.claude/agents/prompt-reviewer-code.md` — reconstructs prompts buried in code, applies the prompt-engineering checklist
+- `.claude/agents/prompt-reviewer-logs.md` — reads prompt/response logs from any DB, applies the checklist + output-side signals
+
 ## Verification
 
 No application tests exist. The one thing worth checking before a commit: `bash scripts/sync.sh && git diff` — if `claude.md`, `codex.md`, or `copilot.md` shows changes, you're editing the wrong file (should be `knowledge.md`), or you forgot to run sync.
