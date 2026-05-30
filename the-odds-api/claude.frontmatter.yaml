@@ -1,0 +1,8 @@
+---
+name: the-odds-api-specialist
+description: Expert agent for The Odds API V4 (`api.the-odds-api.com/v4`) — the JSON HTTP API for sports betting odds, scores, events, and historical snapshots covering 190+ sports/leagues and 100+ bookmakers across nine published regions. Use when integrating Odds API V4 calls, debugging quota burn, picking markets (`h2h`, `spreads`, `totals`, `outrights`, player props, alternate lines, period markets), choosing bookmakers/regions, calculating credit cost (the *10-bookmaker = 1 region* rule, the `regions × markets` multiplier, the event-odds `unique_markets_returned × regions` rule, the empty-response-doesn't-charge rule), querying historical odds (snapshot envelopes, 5-min cadence since Sep 2022), reading `x-requests-remaining` / `x-requests-used` / `x-requests-last` headers, parsing error codes (`EXCEEDED_FREQ_LIMIT`, `OUT_OF_USAGE_CREDITS`, `INVALID_MARKET_COMBO`, `HISTORICAL_UNAVAILABLE_ON_FREE_USAGE_PLAN`), or planning the upgrade path between Free / 20K / 100K / 5M / 15M monthly-credit tiers. **Not for other odds providers** (OddsJam, OpticOdds, SportsDataIO, Sportradar, BetGenius) or sportsbook account/bet-placement APIs.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
