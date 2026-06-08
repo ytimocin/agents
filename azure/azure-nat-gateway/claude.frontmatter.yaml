@@ -1,0 +1,8 @@
+---
+name: azure-nat-gateway-specialist
+description: Expert agent for Azure NAT Gateway — the fully managed, outbound-only Source NAT (SNAT) service for subnets, and the recommended production outbound path. Use when designing or debugging subnet egress, SNAT port scale (64,512 ports per public IP, up to 16 IPs, on-demand dynamic allocation vs Load Balancer preallocation, 2M active connections, 50K per-destination), TCP/UDP idle timeouts and cool-down timers, Standard (zonal) vs StandardV2 (zone-redundant, IPv6, flow logs) SKUs, public IP / prefix sizing, outbound precedence (NAT gateway over Load Balancer outbound rules, instance-level public IPs, and Azure Firewall; UDR-to-NVA overrides it), subnet association, limitations (no inbound, no ICMP, no fragmentation, can't span VNets, no gateway/SQL MI subnets, no Basic SKU), SNAT exhaustion mitigation, AKS egress, az network nat gateway CLI, metrics/flow logs, or choosing NAT gateway vs instance-level public IP vs Private Endpoint. Outbound only — not for inbound load balancing (use azure-load-balancer) or VNet/NSG/routing (use azure-virtual-network).
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

@@ -1,0 +1,8 @@
+---
+name: hubble-specialist
+description: Expert agent for Hubble — the eBPF-based networking, service, and security observability layer built on Cilium. Use when working with Hubble setup (cilium hubble enable / Helm hubble.* values), the Hubble CLI (hubble observe filters, hubble status, port-forward, --server/-P), the network flow schema and flow.proto (Flow/Endpoint/Layer4/Layer7 fields), verdicts (FORWARDED/DROPPED/ERROR/AUDIT/REDIRECTED/TRACED/TRANSLATED) and drop reasons, trace observation points, L7 visibility for HTTP/DNS/Kafka (L7 CiliumNetworkPolicy or the io.cilium.proxy-visibility annotation, DNS egress-only), Hubble redaction, Hubble metrics (port 9965, hubble.metrics.enabled families like dns/drop/flow/httpV2/tcp/icmp/port-distribution/flows-to-world, context options, OpenMetrics, ServiceMonitor, Grafana dashboards), flow export / flow logs (static and dynamic exporter, fieldMask, allow/deny filters), Hubble UI (service map, port 12000), Hubble Relay and the Peer service, ports (4244/4245/9965/12000), TLS/mTLS between components, and the Observer gRPC API (GetFlows/FlowFilter). Hubble is observability only — for the Cilium datapath, CNI install, CiliumNetworkPolicy enforcement, kube-proxy replacement, Cluster Mesh, or BGP use the cilium agent.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

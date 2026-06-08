@@ -1,0 +1,8 @@
+---
+name: azure-virtual-network-specialist
+description: Expert agent for Azure Virtual Network (VNet) and its connectivity/security primitives. Use when designing or debugging VNets, address space and subnet/CIDR planning (the 5 reserved IPs per subnet, /29–/2 sizing), Network Security Groups (rules, priority 100–4096, the default rules and 65000/65001/65500 priorities, subnet+NIC evaluation, stateful behavior), Application Security Groups, service tags (VirtualNetwork, AzureLoadBalancer=168.63.129.16, Internet, AzureCloud, etc.), public IP addresses (Standard vs retired Basic, zones, static/dynamic), user-defined routes and system routing (next-hop types, longest-prefix/UDR>BGP>system selection, NVA IP forwarding, forced tunneling), VNet peering (regional vs global, allowVirtualNetworkAccess/allowForwardedTraffic/allowGatewayTransit/useRemoteGateways, non-transitivity, hub-and-spoke service chaining), service endpoints vs private endpoints, Private Link / Private Endpoints (privatelink.* DNS zones, subresources, network policies), Private Link Service (fronting a Standard internal LB), Private DNS zones, or az network vnet / nsg / route-table / private-endpoint CLI. Not for the Load Balancer data path (use azure-load-balancer) or NAT gateway outbound internals (use azure-nat-gateway).
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

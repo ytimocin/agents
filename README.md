@@ -33,12 +33,19 @@ Pick the topic folder you care about and follow its `README.md` for install inst
 
 ## Topics
 
+### `azure/` — Microsoft Azure networking
+
+- [azure/azure-load-balancer](azure/azure-load-balancer/) — Azure's Layer-4 (TCP/UDP) pass-through network load balancer (Standard/Gateway SKUs, public vs internal, health probes & the `168.63.129.16` probe source, distribution modes, inbound NAT v1/v2, outbound rules & SNAT, HA ports, floating IP/DSR, cross-region global tier, Gateway LB VXLAN chaining, ALBHealthEvent logs)
+- [azure/azure-nat-gateway](azure/azure-nat-gateway/) — Azure's fully managed outbound-only SNAT service (64,512 ports/IP, dynamic on-demand allocation vs LB preallocation, Standard vs StandardV2, outbound precedence over LB/ILPIP/Firewall, idle & cool-down timers, subnet association, AKS egress, SNAT-exhaustion mitigation)
+- [azure/azure-virtual-network](azure/azure-virtual-network/) — Azure VNets and the connectivity/security primitives around them (subnets & the 5 reserved IPs, NSGs with the 65000/65001/65500 default rules, ASGs, service tags, public IP SKUs, UDR/system routing & forced tunneling, regional+global peering, service endpoints vs Private Endpoints, Private Link Service, Private DNS `privatelink.*` zones)
+
 ### `cloud-native/` — Kubernetes ecosystem
 
 - [cloud-native/argocd](cloud-native/argocd/) — declarative GitOps continuous delivery for Kubernetes (CNCF graduated)
 - [cloud-native/cilium](cloud-native/cilium/) — eBPF-based CNI for Kubernetes networking, security (L3/L4/L7 NetworkPolicy), observability (Hubble), service mesh, cluster mesh
 - [cloud-native/flux](cloud-native/flux/) — CNCF-graduated pull-based GitOps toolkit (source-controller, kustomize-controller, helm-controller, notification-controller, image automation, SOPS)
 - [cloud-native/helm](cloud-native/helm/) — the package manager for Kubernetes (charts, templating, hooks, OCI registries, CLI)
+- [cloud-native/hubble](cloud-native/hubble/) — Cilium's eBPF-based observability layer (Hubble server/Relay/UI/CLI, `hubble observe` filters, the `flow.proto` schema with verdicts & drop reasons, L7 HTTP/DNS/Kafka visibility + redaction, metrics on `:9965`, static/dynamic flow export, the service-map UI on `:12000`, the Observer gRPC API; deep companion to `cilium`)
 - [cloud-native/kubefleet](cloud-native/kubefleet/) — multi-cluster Kubernetes management (CNCF sandbox; hub-and-spoke placement, scheduling, staged rollouts, overrides, drift detection)
 - [cloud-native/kubernetes](cloud-native/kubernetes/) — the container orchestration platform itself (workloads, networking, storage, RBAC, troubleshooting)
 

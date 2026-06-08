@@ -1,0 +1,99 @@
+name: doc-drift
+
+# Detects when the *content* of an upstream doc page changes — not just whether
+# the link resolves (that is links.yml) or how old the audit is (freshness.yml).
+# It hashes the normalized article text of every monitored URL and diffs it
+# against a committed baseline; on a change it opens/updates an issue so a human
+# re-audits the affected knowledge.md, then refreshes the baseline.
+#
+# Seeding / resetting the baseline: run this workflow manually (Actions ▸
+# doc-drift ▸ Run workflow) with refresh_baseline = true. Do that once to create
+# the baseline, and again after each re-audit to reset the watermark.
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"  # Mondays 15:00 UTC
+  workflow_dispatch:
+    inputs:
+      refresh_baseline:
+        description: "Overwrite .github/doc-baseline.tsv with the current live content"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # push the refreshed baseline
+  issues: write     # open/update the drift issue
+
+jobs:
+  drift:
+    name: diff upstream doc content vs baseline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Collect monitored doc URLs
+        run: |
+          set -euo pipefail
+          grep -rhoE "https://[^[:space:]\"'<>)]+" */knowledge.md \
+            | sed -E 's/[#?].*$//; s/[.,;:]+$//' \
+            | sort -u > urls.txt
+          echo "Monitoring $(wc -l < urls.txt) unique doc URLs."
+
+      - name: Hash live content
+        run: python3 scripts/doc_check.py hash < urls.txt | sort > current.tsv
+
+      - name: Refresh baseline
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.refresh_baseline == 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p .github
+          mv current.tsv .github/doc-baseline.tsv
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/doc-baseline.tsv
+          git commit -m "chore(doc-drift): refresh content baseline" \
+            && git push || echo "baseline unchanged; nothing to commit"
+
+      - name: Compare against baseline and report
+        if: ${{ !(github.event_name == 'workflow_dispatch' && github.event.inputs.refresh_baseline == 'true') }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ ! -f .github/doc-baseline.tsv ]]; then
+            echo "::notice::No baseline yet. Run this workflow manually with refresh_baseline=true to seed it."
+            exit 0
+          fi
+
+          if python3 scripts/doc_check.py compare .github/doc-baseline.tsv current.tsv > report.md; then
+            echo "No content drift. ✅"
+            cat report.md >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # compare exited 10 → drift. Build an issue body annotated with the
+          # knowledge.md files that reference each changed URL.
+          {
+            cat report.md
+            echo
+            echo "### Where each URL is referenced"
+            grep -oE 'https://[^[:space:]]+' report.md | sort -u | while read -r u; do
+              files=$(grep -rl "$u" */knowledge.md | tr '\n' ' ' || true)
+              echo "- \`$u\` → ${files:-(no longer referenced)}"
+            done
+            echo
+            echo "_After re-auditing, reset this check by running the **doc-drift** workflow with \`refresh_baseline=true\`._"
+          } > issue-body.md
+
+          cat issue-body.md >> "$GITHUB_STEP_SUMMARY"
+
+          TITLE="📚 Upstream docs changed — re-audit needed"
+          gh label create doc-drift --color FBCA04 \
+            --description "Upstream documentation content changed" --force >/dev/null 2>&1 || true
+          num=$(gh issue list --state open --label doc-drift --json number --jq '.[0].number // empty')
+          if [[ -n "$num" ]]; then
+            gh issue comment "$num" --body-file issue-body.md
+            echo "Updated existing issue #$num."
+          else
+            gh issue create --title "$TITLE" --label doc-drift --body-file issue-body.md
+          fi

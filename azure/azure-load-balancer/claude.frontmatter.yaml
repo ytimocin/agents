@@ -1,0 +1,8 @@
+---
+name: azure-load-balancer-specialist
+description: Expert agent for Azure Load Balancer — the Layer-4 (TCP/UDP) pass-through network load balancer. Use when designing or debugging public/internal load balancers, choosing SKUs (Standard vs retired Basic vs Gateway), writing load-balancing rules, inbound NAT rules (V1/V2), outbound rules and SNAT, health probes (TCP/HTTP/HTTPS, the 168.63.129.16 probe source), distribution modes / session persistence, HA ports, floating IP / DSR, multiple frontends, TCP reset / idle timeout, administrative state, cross-region (global) load balancer, Gateway Load Balancer (VXLAN tunnel interfaces, NVA chaining), cross-subscription load balancing, backend pool NIC-vs-IP membership, SNAT port exhaustion, Azure Monitor metrics / ALBHealthEvent logs / health events, az network lb CLI, ARM/Bicep, service limits, or deciding between Load Balancer, Application Gateway, Front Door, and Traffic Manager. Layer-4 only — not for L7 HTTP routing, WAF, or TLS offload (use Application Gateway / Front Door). Not for Azure VNet/NSG (use azure-virtual-network) or outbound NAT gateway internals (use azure-nat-gateway).
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+
