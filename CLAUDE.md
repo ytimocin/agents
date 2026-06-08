@@ -95,3 +95,14 @@ Current workflow agents:
 ## Verification
 
 No application tests exist. The one thing worth checking before a commit: `bash scripts/sync.sh && git diff` — if `claude.md`, `codex.md`, or `copilot.md` shows changes, you're editing the wrong file (should be `knowledge.md`), or you forgot to run sync.
+
+## Freshness automation (`.github/workflows/`)
+
+Scheduled/CI workflows keep the knowledge honest. All of them walk the tree recursively, so they find every `knowledge.md` regardless of domain nesting:
+
+- `verify.yml` (every push/PR) — fails if a generated peer drifted from its `knowledge.md`.
+- `links.yml` (weekly, lychee) — fails on dead/moved doc links.
+- `freshness.yml` (weekly) — flags any `knowledge.md` whose `Last audited:` marker is older than 90 days. **Keep the `Last audited: YYYY-MM-DD` line current when you re-audit a topic.**
+- `doc-drift.yml` (weekly) — hashes the normalized article text of every monitored doc URL (via `scripts/doc_check.py`) and diffs it against `.github/doc-baseline.tsv`; opens/updates a `doc-drift`-labelled issue when upstream **content** changes. `doc-msdate.yml` (weekly) adds a Microsoft-Learn-only `ms.date` vs `Last audited` nudge.
+
+**Baseline workflow:** `.github/doc-baseline.tsv` is the content watermark. Seed it once by running **doc-drift** manually with `refresh_baseline=true`, and re-run that after every re-audit to reset the watermark. The job never auto-updates the baseline, so drift stays visible until a human acts.

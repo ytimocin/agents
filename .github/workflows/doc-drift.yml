@@ -34,7 +34,8 @@ jobs:
       - name: Collect monitored doc URLs
         run: |
           set -euo pipefail
-          grep -rhoE "https://[^[:space:]\"'<>)]+" */knowledge.md \
+          find . -name knowledge.md -not -path './.git/*' -print0 \
+            | xargs -0 grep -hoE "https://[^[:space:]\"'<>)]+" \
             | sed -E 's/[#?].*$//; s/[.,;:]+$//' \
             | sort -u > urls.txt
           echo "Monitoring $(wc -l < urls.txt) unique doc URLs."
@@ -78,7 +79,7 @@ jobs:
             echo
             echo "### Where each URL is referenced"
             grep -oE 'https://[^[:space:]]+' report.md | sort -u | while read -r u; do
-              files=$(grep -rl "$u" */knowledge.md | tr '\n' ' ' || true)
+              files=$(grep -rl "$u" --include=knowledge.md . | tr '\n' ' ' || true)
               echo "- \`$u\` → ${files:-(no longer referenced)}"
             done
             echo
