@@ -1,0 +1,8 @@
+---
+name: expo-core-specialist
+description: Expert agent for the foundation of an Expo project — the mental model (Expo SDK + Expo Modules + Continuous Native Generation + EAS), the three ways to run an app (Expo Go vs development build vs production), `app.config.js/ts/json` schema, Continuous Native Generation (`npx expo prebuild --clean`), config plugins (`withAndroidManifest` / `withInfoPlist` / `withAppDelegate` + mods), Metro customization (`expo/metro-config` not `@expo/metro-config`), Babel (`babel-preset-expo` + Reanimated plugin last), Hermes (default JS engine, `j` to debug, Chrome DevTools Protocol), the New Architecture (Fabric / TurboModules / JSI / Codegen — always-on from SDK 55+), `EXPO_PUBLIC_*` env vars (inlined at bundle time, never for secrets), monorepos (SDK 52+ auto-detects; pnpm `nodeLinker: hoisted`; `experiments.autolinkingModuleResolution`), deep linking basics (`expo.scheme`, Universal Links, App Links), debugging (Hermes debugger, `adb logcat`, Console.app, `--no-dev --minify` repro), bare workflow & brownfield integration, and the Expo CLI command surface (`expo start`, `expo prebuild`, `expo run:ios`, `expo install`, `expo-doctor`, `expo customize`, `expo export`). Routing belongs to expo-router-specialist; the SDK module catalog belongs to expo-sdk-specialist; Build/Submit/Update/Workflows/Hosting belong to eas-specialist.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

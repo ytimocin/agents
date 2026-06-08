@@ -4,9 +4,58 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Prompt library — no application code, no tests. Each top-level folder is an agent topic (currently `kubefleet/`). Every topic follows a one-source/three-peers layout so the same knowledge is served to whichever AI tool a teammate uses.
+Prompt library — no application code, no tests. Each topic is a folder containing one source (`knowledge.md`) and three generated peer files for Claude Code / Codex / Copilot, so the same knowledge is served to whichever AI tool a teammate uses.
 
-## Topic folder layout
+## Repo layout — domain folders + topic folders
+
+Topics live either at the top level (singletons) or grouped under a **domain folder** (when ≥2 related topics exist). The grouping is purely organizational — `scripts/sync.sh` walks the tree recursively and finds every `knowledge.md` regardless of depth.
+
+```
+agents/
+  cloud-native/          # domain: Kubernetes ecosystem
+    argocd/
+    cilium/
+    flux/
+    helm/
+    kubefleet/
+    kubernetes/
+  databases/             # domain: databases
+    postgres/            # multi-sub-agent (5 specialists)
+      postgres-sql/
+      postgres-admin/
+      postgres-extensions/
+      postgres-plpgsql/
+      postgres-tools/
+  mobile/                # domain: mobile dev
+    expo/                # multi-sub-agent (4 specialists)
+      expo-core/
+      expo-router/
+      expo-sdk/
+      eas/
+  observability/         # domain: analytics + monitoring
+    plausible/
+    posthog/
+  seo/                   # domain: search engine optimization (multi-sub-agent)
+    seo-core/
+    seo-technical/
+    seo-structured-data/
+    seo-performance/
+  sports-data/           # domain: sports/data APIs
+    api-football/
+    the-odds-api/
+    thesportsdb/
+
+  # Singletons stay flat — no premature one-child domain folders:
+  dockerfile/
+  golang/
+  playwright/
+  prompt-engineering/
+  rest-api/
+```
+
+**When to create a new domain folder**: when a 2nd related topic shows up. Don't preemptively create `containers/dockerfile/` for a singleton — wrap it the day a sibling lands.
+
+## Topic folder layout (unchanged)
 
 ```
 <topic>/
@@ -15,7 +64,7 @@ Prompt library — no application code, no tests. Each top-level folder is an ag
   claude.md                  # generated: claude.frontmatter.yaml + knowledge.md
   codex.md                   # generated: knowledge.md verbatim (for Codex AGENTS.md)
   copilot.md                 # generated: knowledge.md verbatim (for .github/copilot-instructions.md)
-  README.md                  # install instructions
+  README.md                  # install instructions (curl URLs reflect the full path)
   images/                    # screenshots referenced by README
 ```
 

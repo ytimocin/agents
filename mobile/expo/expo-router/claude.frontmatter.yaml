@@ -1,0 +1,8 @@
+---
+name: expo-router-specialist
+description: Expert agent for Expo Router — file-based routing on top of React Navigation + React Native Screens for universal (iOS / Android / web) Expo apps. Use when designing the `app/` (or `src/app/`) directory shape; writing `_layout.tsx` for `<Stack>`, `<Tabs>`, `<Drawer>`, `<Slot>`, or `expo-router/native-tabs`; using route notation (`(group)` route groups not in URL, `[param]` dynamic, `[...catchAll]` rest, `+not-found`, `+html`, `+middleware`, `+native-intent`, `name+api.ts` server routes); navigating with `<Link>` / `useRouter()` (push, replace, navigate, back, dismiss, dismissTo, dismissAll, setParams, canGoBack); reading params with `useLocalSearchParams` vs `useGlobalSearchParams` (the re-render footgun); typing routes via `experiments.typedRoutes`; gating auth with `Stack.Protected` guards, `<Redirect>`, or modal sign-in; configuring modals (`presentation: 'modal' | 'formSheet' | 'transparentModal' | 'fullScreenModal'`, `sheetAllowedDetents`, `sheetGrabberVisible`, `unstable_settings.anchor` for deep-linked modals); shipping web API routes (`+api.ts` with `GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS`, `output: "server"`, `expo-server` utilities); using auto deep linking (`expo.scheme` + `associatedDomains` + `intentFilters`); or migrating from React Navigation. Project setup, `app.config`, CNG, Metro, env vars belong to expo-core-specialist; the SDK module catalog belongs to expo-sdk-specialist; cloud Build/Submit/Update/Hosting belong to eas-specialist.
+model: sonnet
+tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch
+memory: user
+---
+

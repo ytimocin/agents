@@ -6,16 +6,33 @@ Thanks for taking the time. Most contributions fall into one of three buckets:
 2. **Editing an existing topic** — PR against `<topic>/knowledge.md`; run the sync script before committing.
 3. **Adding a new topic** — scaffold the files following the kubefleet layout.
 
-## The layout: one source, three generated peers
+## The layout: domain folders + one-source-three-peers per topic
 
-Every topic folder contains:
+Topics live either at the top level (singletons) or grouped under a **domain folder** when ≥2 related topics exist — `cloud-native/`, `databases/`, `mobile/`, `observability/`, `seo/`, `sports-data/`. The grouping is organizational; the `scripts/sync.sh` script walks the tree recursively and finds every `knowledge.md` regardless of nesting depth.
+
+```
+agents/
+  <domain>/             # ← only present when ≥2 topics cluster
+    <topic>/
+      knowledge.md
+      claude.frontmatter.yaml
+      claude.md         # generated
+      codex.md          # generated
+      copilot.md        # generated
+      README.md
+  <topic>/              # ← singletons stay flat
+    knowledge.md
+    ...
+```
+
+Every topic folder (at any nesting depth) contains:
 
 - `<topic>/knowledge.md` — the shared body. **The only file edited by hand.**
 - `<topic>/claude.frontmatter.yaml` — YAML frontmatter used for the Claude Code subagent wrapper.
 - `<topic>/claude.md` — generated: frontmatter + knowledge.md
 - `<topic>/codex.md` — generated: knowledge.md verbatim (for Codex `AGENTS.md`)
 - `<topic>/copilot.md` — generated: knowledge.md verbatim (for GitHub Copilot)
-- `<topic>/README.md` — install instructions
+- `<topic>/README.md` — install instructions (the `curl` URLs reflect the full path including any domain folder)
 
 The three tool-facing files are **peers**, not copies of each other. They all derive from `knowledge.md`. CI regenerates them on every push and fails the build if any has drifted, so there's no way for a teammate using one tool to get different knowledge than a teammate using another.
 
@@ -47,14 +64,23 @@ Before adding or changing a fact:
 
 ## Adding a new topic
 
-Pick a short, lowercase, single-word folder name (`kubefleet`, `argocd`, `kubectl`, etc.).
+Pick a short, lowercase folder name (`kubefleet`, `argocd`, `kubectl`, `expo-router`, etc. — hyphens are fine).
+
+**Decide where it goes:**
+
+- **Does an existing domain folder fit?** Drop it in (`cloud-native/<topic>/`, `databases/<topic>/`, `mobile/<topic>/`, etc.).
+- **Does an existing top-level singleton become a sibling?** Create the domain folder now and move the singleton in alongside the newcomer.
+- **Neither?** Drop it at the top level as a singleton. Don't preemptively create a one-child domain folder — wrap when a sibling shows up.
 
 ```bash
 topic=<name>
+# Top-level singleton:
 mkdir -p "$topic/images"
+# Or inside a domain:
+mkdir -p "<domain>/$topic/images"
 ```
 
-Create `<topic>/knowledge.md`. Use `kubefleet/knowledge.md` as a structural template — preamble with upstream links and a "fetch the linked page for edge cases" directive, an `## API Groups & Versions` table if applicable, `## Core Concepts`, `## Troubleshooting`, etc. Keep it high-signal; link out rather than reproducing the docs verbatim.
+Create `<topic>/knowledge.md`. Use `cloud-native/kubefleet/knowledge.md` as a structural template — preamble with upstream links and a "fetch the linked page for edge cases" directive, an `## API Groups & Versions` table if applicable, `## Core Concepts`, `## Troubleshooting`, etc. Keep it high-signal; link out rather than reproducing the docs verbatim.
 
 Create `<topic>/claude.frontmatter.yaml` with the subagent metadata:
 
@@ -77,7 +103,7 @@ Generate the three tool-facing files:
 bash scripts/sync.sh
 ```
 
-Create `<topic>/README.md` modeled on `kubefleet/README.md` — three install sections (Claude Code, Codex, Copilot) with `curl` commands, plus a Provenance note pointing at upstream docs.
+Create `<topic>/README.md` modeled on `cloud-native/kubefleet/README.md` — three install sections (Claude Code, Codex, Copilot) with `curl` commands, plus a Provenance note pointing at upstream docs. The `curl` URLs must reflect the **full path** including any domain folder (`/agents/main/<domain>/<topic>/claude.md`, not `/agents/main/<topic>/claude.md`).
 
 Add the new topic to the Topics list in the root `README.md`.
 
